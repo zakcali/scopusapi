@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- scopusapi V2.0: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
+<!-- scopusapi V2.1: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
 programmed by Zafer Akçalı, MD -->
 <html>
 <head>
@@ -36,8 +36,7 @@ Scopus makale numarasını (eid) giriniz<br/>
 Scopus eid: <input type="text" name="eid" size="25" id="eid" value="<?php echo $sp->scopusid;?>" >  
 doi: <input type="text" name="doi" size="55"  id="doi" value="<?php echo $sp->doi;?>"> <br/>
 Makalenin başlığı: <input type="text" name="ArticleTitle" size="85"  id="ArticleTitle" value="<?php echo str_replace ('"',  '&#34',$sp->ArticleTitle);?>"> <br>
-Dergi ismi: <input type="text" name="Title" size="50"  id="Title" value="<?php echo $sp->dergi;?>"> 
-Kısa ismi: <input type="text" name="ISOAbbreviation" size="26"  id="ISOAbbreviation" value="<?php echo $sp->ISOAbbreviation;?>"> <br/>
+Dergi ismi: <input type="text" name="Title" size="80"  id="Title" value="<?php echo $sp->dergi;?>"> <br>
 ISSN: <input type="text" name="ISSN" size="8"  id="ISSN" value="<?php echo $sp->ISSN;?>">
 eISSN: <input type="text" name="eISSN" size="8"  id="eISSN" value="<?php echo $sp->eISSN;?>">
 ISBN: <input type="text" name="ISBN" size="30"  id="ISBN" value="<?php echo $sp->ISBN;?>"> <br>
