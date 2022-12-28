@@ -32,7 +32,6 @@ class getScopusPublication {
 		curl_close($ch);
 // print_r ($data);
 		$scopusBilgi=(json_decode($data, true));
-// var_dump ($scopusBilgi);
 
 // print_r ($scopusBilgi);
 		if ( !isset ($scopusBilgi['error-response']) && isset ($scopusBilgi['abstracts-retrieval-response']['coredata']['dc:title']) ) {// message:Forbidden
@@ -76,12 +75,14 @@ class getScopusPublication {
 					$this->eISSN=substr ($issntext,9,4).'-'.substr ($issntext,13,4);
 }
 // isbn, kitaplar için, birden fazla olabilir
-			if (isset($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn'])) {
-				foreach ($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn'] as $eleman) {
-					$this->ISBN.=$eleman['$'].'; ';
-					}
-				$this->ISBN=substr ($this->ISBN,0,-2);
-				}
+			if (isset($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn'])) { // dizi şeklinde birden fazla isbn
+				if (is_array($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn'])) {
+					foreach ($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn'] as $eleman) {
+						$this->ISBN.=$eleman['$'].'; ';
+						}
+					$this->ISBN=substr ($this->ISBN,0,-2);
+			} else $this->ISBN=$scopusBilgi['abstracts-retrieval-response']['coredata']['prism:isbn']; // bir tek isbn var, dizi yok
+						}
 // Derginin basıldığı / yayımlandığı yıl
 			if (isset($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:coverDate']))
 				$this->Year= substr ($scopusBilgi['abstracts-retrieval-response']['coredata']['prism:coverDate'],0,4);
