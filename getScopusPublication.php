@@ -1,6 +1,6 @@
 <?php
 class getScopusPublication {
-	public $scopusid='', $doi='', $ArticleTitle='', $dergi='', $ISOAbbreviation='', $publisher='', $ISSN='', $eISSN='', $Year='', $Volume='', $Issue='', $StartPage='', $EndPage='', $yazarlar='', $PublicationType='', $AbstractText='', $PMID='', $atif='', $ISBN='', $kitapDergi='';
+	public $scopusid='', $doi='', $ArticleTitle='', $dergi='', $ISOAbbreviation='', $publisher='', $ISSN='', $eISSN='', $Year='', $Volume='', $Issue='', $StartPage='', $EndPage='', $yazarlar='', $PublicationType='', $AbstractText='', $PMID='', $atif='', $ISBN='', $kitapDergi='', $dikkat='';
 	public $yazarS=0;
 		    function __construct() {
 
@@ -27,15 +27,23 @@ class getScopusPublication {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 		'Accept: application/json',
-		'X-ELS-APIKey: Your-API-KEY'));
+		'X-ELS-APIKey: your-API-KEY'));
 		$data=curl_exec($ch);
 		curl_close($ch);
 // print_r ($data);
-		$scopusBilgi=(json_decode($data, true));
+		$dizi=(json_decode($data, true));
 
-// print_r ($scopusBilgi);
-		if ( !isset ($scopusBilgi['error-response']) && isset ($scopusBilgi['abstracts-retrieval-response']['coredata']['dc:title']) ) {// message:Forbidden
-// Makalenin başlığı
+// print_r ($dizi);
+		if ( !isset ($dizi['error-response'])) { // api sitesi ip kontrolü yapıyor
+			if (isset ($dizi['abstracts-retrieval-response']['coredata']['dc:title']) ) {
+				$this->getDocumentData ($dizi);
+			} else $this->dikkat='yayın bulunamadı';
+		} else $this->dikkat = 'siteye bağlanamadı'; // message:Forbidden
+		
+		
+	} // final function scopusPublication
+	private function getDocumentData (& $scopusBilgi) {
+		// Makalenin başlığı
 			$this->ArticleTitle=$scopusBilgi['abstracts-retrieval-response']['coredata']['dc:title'];
 // publisher
 			if (isset($scopusBilgi['abstracts-retrieval-response']['coredata']['dc:publisher']))
@@ -117,8 +125,5 @@ class getScopusPublication {
 					}
 			}
 			$this->yazarlar=substr ($this->yazarlar,0,-2);
-		} // {"message":"Forbidden"} hatası gelmedi
-		
-		
-	} // final function scopusPublication
+	} // private function getDocumentData 
 }
