@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- scopusapi V2.1: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
+<!-- scopusapi V2.2: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
 programmed by Zafer Akçalı, MD -->
 <html>
 <head>
@@ -24,7 +24,7 @@ if (isset($_POST['scopusid'])) {
 ?>
 <a href="eid nerede.png" target="_blank"> Scopus numarasına nereden bakılır? </a>
 <form method="post" action="">
-Scopus makale numarasını (eid) giriniz<br/>
+Scopus makale numarasını (eid) giriniz. <?php echo ' '.$sp->dikkat;?><br/>
 <input type="text" name="scopusid" id="scopusid" value="<?php echo $sp->scopusid;?>" >
 <input type="submit" value="Scopus yayın bilgilerini PHP ile getir">
 </form>
