@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- scopusapi V2.4: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
+<!-- scopusapi V2.5: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
 programmed by Zafer Akçalı, MD -->
 <html>
 <head>
