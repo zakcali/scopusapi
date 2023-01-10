@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- scopusapi V2.3: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
+<!-- scopusapi V2.4: bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur 
 programmed by Zafer Akçalı, MD -->
 <html>
 <head>
@@ -12,7 +12,7 @@ programmed by Zafer Akçalı, MD -->
 // scopusapi
 // By Zafer Akçalı, MD
 // Zafer Akçalı tarafından programlanmıştır
-require_once './getScopusPublication.php';
+require_once 'getScopusPublication.php';
 $sp=new getScopusPublication ();
 
 if (isset($_POST['scopusid'])) {
@@ -35,7 +35,7 @@ Scopus makale numarasını (eid) giriniz. <?php echo ' '.$sp->dikkat;?><br/>
 <br/>
 Scopus eid: <input type="text" name="eid" size="25" id="eid" value="<?php echo $sp->scopusid;?>" >  
 doi: <input type="text" name="doi" size="55"  id="doi" value="<?php echo $sp->doi;?>"> <br/>
-Makalenin başlığı: <input type="text" name="ArticleTitle" size="85"  id="ArticleTitle" value="<?php echo str_replace ('"',  '&#34',$sp->ArticleTitle);?>"> <br>
+Başlık: <input type="text" name="ArticleTitle" size="96"  id="ArticleTitle" value="<?php echo str_replace ('"',  '&#34',$sp->ArticleTitle);?>"> <br>
 Dergi ismi: <input type="text" name="Title" size="80"  id="Title" value="<?php echo $sp->dergi;?>"> <br>
 ISSN: <input type="text" name="ISSN" size="8"  id="ISSN" value="<?php echo $sp->ISSN;?>">
 eISSN: <input type="text" name="eISSN" size="8"  id="eISSN" value="<?php echo $sp->eISSN;?>">
