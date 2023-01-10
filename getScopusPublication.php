@@ -1,12 +1,16 @@
 <?php
 class getScopusPublication {
-	public $scopusid='', $doi='', $ArticleTitle='', $dergi='', $ISOAbbreviation='', $publisher='', $ISSN='', $eISSN='', $Year='', $Volume='', $Issue='', $StartPage='', $EndPage='', $yazarlar='', $PublicationType='', $AbstractText='', $PMID='', $atif='', $ISBN='', $kitapDergi='', $dikkat='';
-	public $yazarS=0;
-		    function __construct() {
-
-		}
-	final function scopusPublication ($sid) {
 	
+	function __construct() {
+		$this->initialize();
+		}
+	function initialize () {
+		$this->scopusid=''; $this->doi=''; $this->ArticleTitle=''; $this->dergi=''; $this->publisher=''; $this->ISSN=''; $this->eISSN=''; $this->Year=''; $this->Volume=''; $this->Issue=''; $this->StartPage=''; $this->EndPage=''; $this->yazarlar=''; $this->PublicationType=''; $this->AbstractText=''; $this->PMID=''; $this->atif=''; $this->ISBN=''; $this->kitapDergi=''; $this->dikkat='';
+		$this->yazarS=0; 
+		}
+			
+	final function scopusPublication ($sid) {
+	$this->initialize();
 		if( substr($sid,0,7) == '2-s2.0-')
 			$sid=str_replace('2-s2.0-','',$sid); // sadece rakamlı kısım
 			$preText="https://api.elsevier.com/content/abstract/scopus_id/";
@@ -24,7 +28,7 @@ class getScopusPublication {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 		'Accept: application/json',
-		'X-ELS-APIKey: Your-API-KEY'));
+		'X-ELS-APIKey: your-API-KEY'));
 		$data=curl_exec($ch);
 		curl_close($ch);
 // print_r ($data);
