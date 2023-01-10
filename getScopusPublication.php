@@ -37,6 +37,9 @@ class getScopusPublication {
 		if ( isset ($scopusBilgi['error-response'])) {
 			$this->dikkat = 'siteye bağlanamadı'; // message:Forbidden
 			return;	}
+		if ( isset ($scopusBilgi['service-error'])) {
+			$this->dikkat = 'siteye bağlanamadı'; //  AUTHORIZATION_ERROR
+			return;	}
 		if (!isset ($scopusBilgi['abstracts-retrieval-response']['coredata']['dc:title']) ) {
 			$this->dikkat='yayın bulunamadı';
 			return; }
