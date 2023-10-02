@@ -14,7 +14,7 @@ class getScopusPublication {
 		if( substr($sid,0,7) == '2-s2.0-')
 			$sid=str_replace('2-s2.0-','',$sid); // sadece rakamlı kısım
 			$preText="https://api.elsevier.com/content/abstract/scopus_id/";
-			$postText='?view=META_ABS&field=dc:description,authors,title,pubmed-id,eid,publicationName,volume,subtypeDescription, issueIdentifier,prism:issn,prism:isbn,prism:pageRange,publisher,coverDate,article-number,doi,citedby-count,prism:aggregationType';
+			$postText='?view=META_ABS&field=dc:description,authors,title,pubmed-id,eid,publicationName,volume,subtypeDescription,prism:issueIdentifier,prism:issn,prism:isbn,prism:pageRange,publisher,coverDate,article-number,doi,citedby-count,prism:aggregationType';
 			$url = $preText.$sid.$postText;
 // http://schema.elsevier.com/dtds/document/bkapi/search/SCIDIRSearchViews.htm
 // https://pybliometrics.readthedocs.io/en/stable/classes/AbstractRetrieval.html
